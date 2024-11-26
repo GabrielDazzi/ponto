@@ -78,14 +78,14 @@ function saveLogData(logData) {
     },
     body: JSON.stringify({ user, logs: logData[user] }),
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Falha ao enviar os dados para o servidor');
-    }
-  })
-  .catch(error => {
-    console.error('Erro ao enviar dados:', error);
-  });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Falha ao enviar os dados para o servidor');
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao enviar dados:', error);
+    });
 }
 
 function updateStatus() {
