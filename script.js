@@ -43,7 +43,8 @@ function getUser() {
     if (userLogs.length === 0) {
       logDiv.innerHTML = '<p>Nenhum registro encontrado.</p>';
     } else {
-      userLogs.forEach(entry => {
+      // Inverter a ordem dos registros para mostrar os mais recentes primeiro
+      userLogs.reverse().forEach(entry => { // Modificação aqui: usamos reverse() para inverter a ordem
         const div = document.createElement('div');
         div.className = 'entry';
         const duration = entry.saida
