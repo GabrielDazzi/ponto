@@ -6,7 +6,7 @@ function getUser() {
     } else {
       document.getElementById('user-section').style.display = 'none';
       document.getElementById('app').style.display = 'block';
-      document.getElementById('user-name').textContent = currentUser; // Exibe o nome do usuário
+      document.getElementById('user-name').textContent = currentUser;
       updateLog();
     }
   }
@@ -15,7 +15,7 @@ function getUser() {
     const username = document.getElementById('username').value.trim();
     if (username) {
       localStorage.setItem('currentUser', username);
-      getUser(); // Atualiza a tela com o nome do usuário
+      getUser();
     } else {
       alert('Por favor, insira um nome!');
     }
@@ -43,7 +43,6 @@ function getUser() {
     if (userLogs.length === 0) {
       logDiv.innerHTML = '<p>Nenhum registro encontrado.</p>';
     } else {
-      // Inverter a ordem dos registros para mostrar os mais recentes primeiro
       userLogs.reverse().forEach(entry => {
         const div = document.createElement('div');
         div.className = 'entry';
@@ -61,6 +60,30 @@ function getUser() {
     }
   }
   
+  function saveLogData(logData) {
+    localStorage.setItem('workLogs', JSON.stringify(logData));
+  
+    const user = localStorage.getItem('currentUser');
+    const endpoint = 'kerlo'; //aqui pra voce meu amigo
+  
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user, logs: logData[user] }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Falha ao enviar os dados para o servidor');
+      }
+      console.log('Dados enviados para o servidor com sucesso');
+    })
+    .catch(error => {
+      console.error('Erro ao enviar dados:', error);
+    });
+  }
+  
   function registerEntry() {
     const now = new Date();
     const user = localStorage.getItem('currentUser');
@@ -70,14 +93,14 @@ function getUser() {
       logData[user] = [];
     }
   
-    // Verifica se já existe um registro de entrada em andamento
     if (logData[user].length > 0 && !logData[user][logData[user].length - 1].saida) {
       alert('Você já tem um registro de entrada em andamento. Registre a saída antes de abrir um novo!');
       return;
     }
   
     logData[user].push({ entrada: now, pausaAlmocoInicio: null, pausaAlmocoFim: null, pausaCafeInicio: null, pausaCafeFim: null });
-    localStorage.setItem('workLogs', JSON.stringify(logData));
+  
+    saveLogData(logData);
     updateLog();
   }
   
@@ -92,7 +115,8 @@ function getUser() {
     }
   
     logData[user][logData[user].length - 1].saida = now;
-    localStorage.setItem('workLogs', JSON.stringify(logData));
+  
+    saveLogData(logData);
     updateLog();
   }
   
@@ -107,7 +131,8 @@ function getUser() {
     }
   
     logData[user][logData[user].length - 1].pausaAlmocoInicio = now;
-    localStorage.setItem('workLogs', JSON.stringify(logData));
+  
+    saveLogData(logData);
     updateLog();
   }
   
@@ -122,7 +147,8 @@ function getUser() {
     }
   
     logData[user][logData[user].length - 1].pausaAlmocoFim = now;
-    localStorage.setItem('workLogs', JSON.stringify(logData));
+  
+    saveLogData(logData);
     updateLog();
   }
   
@@ -137,7 +163,8 @@ function getUser() {
     }
   
     logData[user][logData[user].length - 1].pausaCafeInicio = now;
-    localStorage.setItem('workLogs', JSON.stringify(logData));
+  
+    saveLogData(logData);
     updateLog();
   }
   
@@ -152,7 +179,8 @@ function getUser() {
     }
   
     logData[user][logData[user].length - 1].pausaCafeFim = now;
-    localStorage.setItem('workLogs', JSON.stringify(logData));
+  
+    saveLogData(logData);
     updateLog();
   }
   
@@ -163,6 +191,4 @@ function getUser() {
   document.getElementById('btnPausaAlmocoFim').addEventListener('click', registerPausaAlmocoFim);
   document.getElementById('btnPausaCafeInicio').addEventListener('click', registerPausaCafeInicio);
   document.getElementById('btnPausaCafeFim').addEventListener('click', registerPausaCafeFim);
-  
-  window.onload = getUser;
   
