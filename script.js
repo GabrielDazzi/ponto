@@ -54,6 +54,10 @@ function getUser() {
           <p>Entrada: ${formatDate(new Date(entry.entrada))}</p>
           ${entry.saida ? `<p>Saída: ${formatDate(new Date(entry.saida))}</p>` : ''}
           <p>${duration}</p>
+          ${entry.pausaAlmocoInicio ? `<p>Pausa Almoço: Início às ${formatDate(new Date(entry.pausaAlmocoInicio))}</p>` : ''}
+          ${entry.pausaAlmocoFim ? `<p>Pausa Almoço: Fim às ${formatDate(new Date(entry.pausaAlmocoFim))}</p>` : ''}
+          ${entry.pausaCafeInicio ? `<p>Pausa Café: Início às ${formatDate(new Date(entry.pausaCafeInicio))}</p>` : ''}
+          ${entry.pausaCafeFim ? `<p>Pausa Café: Fim às ${formatDate(new Date(entry.pausaCafeFim))}</p>` : ''}
         `;
         logDiv.appendChild(div);
       });
@@ -64,7 +68,7 @@ function getUser() {
     localStorage.setItem('workLogs', JSON.stringify(logData));
   
     const user = localStorage.getItem('currentUser');
-    const endpoint = 'kerlo'; //aqui pra voce meu amigo
+    const endpoint = 'kerlo'; //para voce meu amigo
   
     fetch(endpoint, {
       method: 'POST',
@@ -125,7 +129,7 @@ function getUser() {
     const user = localStorage.getItem('currentUser');
     const logData = JSON.parse(localStorage.getItem('workLogs')) || {};
   
-    if (!logData[user] || logData[user].length === 0 || logData[user][logData[user].length - 1].pausaAlmocoInicio) {
+    if (!logData[user] || logData[user].length === 0 || logData[user][logData[user].length - 1].pausaAlmocoInicio || logData[user][logData[user].length - 1].pausaAlmocoFim) {
       alert('Pausa para Almoço já registrada ou entrada não registrada!');
       return;
     }
@@ -141,7 +145,7 @@ function getUser() {
     const user = localStorage.getItem('currentUser');
     const logData = JSON.parse(localStorage.getItem('workLogs')) || {};
   
-    if (!logData[user] || logData[user].length === 0 || !logData[user][logData[user].length - 1].pausaAlmocoInicio) {
+    if (!logData[user] || logData[user].length === 0 || !logData[user][logData[user].length - 1].pausaAlmocoInicio || logData[user][logData[user].length - 1].pausaAlmocoFim) {
       alert('Pausa para Almoço não foi iniciada!');
       return;
     }
@@ -157,7 +161,7 @@ function getUser() {
     const user = localStorage.getItem('currentUser');
     const logData = JSON.parse(localStorage.getItem('workLogs')) || {};
   
-    if (!logData[user] || logData[user].length === 0 || logData[user][logData[user].length - 1].pausaCafeInicio) {
+    if (!logData[user] || logData[user].length === 0 || logData[user][logData[user].length - 1].pausaCafeInicio || logData[user][logData[user].length - 1].pausaCafeFim) {
       alert('Pausa para Café já registrada ou entrada não registrada!');
       return;
     }
@@ -173,7 +177,7 @@ function getUser() {
     const user = localStorage.getItem('currentUser');
     const logData = JSON.parse(localStorage.getItem('workLogs')) || {};
   
-    if (!logData[user] || logData[user].length === 0 || !logData[user][logData[user].length - 1].pausaCafeInicio) {
+    if (!logData[user] || logData[user].length === 0 || !logData[user][logData[user].length - 1].pausaCafeInicio || logData[user][logData[user].length - 1].pausaCafeFim) {
       alert('Pausa para Café não foi iniciada!');
       return;
     }
