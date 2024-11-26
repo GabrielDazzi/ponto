@@ -44,7 +44,7 @@ function getUser() {
       logDiv.innerHTML = '<p>Nenhum registro encontrado.</p>';
     } else {
       // Inverter a ordem dos registros para mostrar os mais recentes primeiro
-      userLogs.reverse().forEach(entry => { // Modificação aqui: usamos reverse() para inverter a ordem
+      userLogs.reverse().forEach(entry => {
         const div = document.createElement('div');
         div.className = 'entry';
         const duration = entry.saida
@@ -68,6 +68,12 @@ function getUser() {
   
     if (!logData[user]) {
       logData[user] = [];
+    }
+  
+    // Verifica se já existe um registro de entrada em andamento
+    if (logData[user].length > 0 && !logData[user][logData[user].length - 1].saida) {
+      alert('Você já tem um registro de entrada em andamento. Registre a saída antes de abrir um novo!');
+      return;
     }
   
     logData[user].push({ entrada: now, pausaAlmocoInicio: null, pausaAlmocoFim: null, pausaCafeInicio: null, pausaCafeFim: null });
