@@ -1,0 +1,152 @@
+body {
+    font-family: 'Arial', sans-serif;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f7f8fa;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #111;
+  }
+  
+  button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    background: #fff;
+    color: #333;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  button:hover {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+  }
+  
+  button:focus {
+    outline: none;
+    border-color: #555;
+  }
+  
+  #log {
+    margin-top: 20px;
+  }
+  
+  .entry {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    font-size: 0.9rem;
+  }
+  
+  .entry p {
+    margin: 5px 0;
+  }
+  
+  .entry p:first-child {
+    font-weight: bold;
+  }
+  
+  .entry h3 {
+    font-size: 1rem;
+    color: #111;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+  
+  #log p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+  }
+
+  #user-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  #user-section p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  #user-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+  }
+  
+  #user-section input:focus {
+    outline: none;
+    border-color: #5c6bc0;
+  }
+  
+  #btnSetUser {
+    width: 100%;
+    padding: 10px;
+    background: #5c6bc0;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #btnSetUser:hover {
+    background: #3949ab;
+  }
+  
+  @media (max-width: 600px) {
+    body {
+      margin: 20px auto;
+      padding: 15px;
+    }
+  
+    button {
+      width: 100%;
+    }
+    
+    #user-section {
+      padding: 15px;
+    }
+  
+    #user-section p {
+      font-size: 0.9rem;
+    }
+  
+    #btnSetUser {
+      font-size: 0.9rem;
+    }
+  }
+  
