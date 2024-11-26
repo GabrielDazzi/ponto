@@ -16,6 +16,7 @@
 
   <div id="app" style="display: none;">
     <h1>Bem-vindo, <span id="user-name"></span>!</h1>
+    <p id="current-status" style="font-weight: bold; text-align: center;">Status: Fora do Trabalho</p>
     <button id="btnEntrada">Registrar Entrada</button>
     <button id="btnSaida">Registrar Saída</button>
     <button id="btnPausaAlmocoInicio">Iniciar Pausa para Almoço</button>
@@ -23,8 +24,12 @@
     <button id="btnPausaCafeInicio">Iniciar Pausa para Café</button>
     <button id="btnPausaCafeFim">Finalizar Pausa para Café</button>
 
-    <div id="log"></div>
-  </div>
+    
+    <div id="log">
+      <div id="current-log"></div>
+      <hr id="separator" style="display: none;">
+      <div id="old-log"></div>
+    </div>
 
   <script src="script.js"></script>
 </body>
